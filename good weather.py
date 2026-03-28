@@ -1,22 +1,29 @@
 import requests
 
 
-def weather():
-    locations = {
-        "london": "london?MnqT",
-        "sheremetyevo": "svo?MnqT",
-        "cherepovets": "череповец?MnqT&lang=ru"
-    }
+def get_address():
+    locations = ["london", "svo", "cherepovets"]
+    return locations
 
-    for location in locations.values():
-        url = f"http://wttr.in/{location}"
-        response = requests.get(url)
-        response.raise_for_status()
-        print(response.text)
+
+def get_weather(location):
+    url = f"http://wttr.in/{location}"
+    params = {
+        "M": "",
+        "n": "",
+        "q": "",
+        "T": "",
+        "lang": "ru"
+    }
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    return response.text
 
 
 def main():
-    weather()
+    locations = get_address()
+    for location in locations:
+        print(get_weather(location))
 
 
 if __name__ == "__main__":
