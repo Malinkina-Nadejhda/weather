@@ -1,11 +1,6 @@
 import requests
 
 
-def get_address():
-    locations = ["london", "svo", "cherepovets"]
-    return locations
-
-
 def get_weather(location):
     url = f"http://wttr.in/{location}"
     params = {
@@ -21,11 +16,10 @@ def get_weather(location):
 
 
 def main():
-    locations = get_address()
+    locations = ["london", "svo", "cherepovets"]
     for location in locations:
         print(get_weather(location))
 
 
 if __name__ == "__main__":
     main()
-
